@@ -1,0 +1,194 @@
+/* --- Modern Glassy Medical UI Theme --- */
+:root {
+  --primary-blue: #2f80ed;
+  --primary-blue-light: rgba(47, 128, 237, 0.1);
+  --eco-green: #27ae60;
+  --eco-green-light: rgba(39, 174, 96, 0.1);
+  --text-dark: #1c1e21;
+  --text-light: #6b7280;
+  --white: #ffffff;
+  --background: #f3f4f6;
+  --card-glass: rgba(255, 255, 255, 0.75);
+  --blur-bg: blur(20px);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #d6def9, #f3f4f6);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--text-dark);
+}
+
+.choice-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.choice-card {
+  background: linear-gradient(135deg, #d6def9, #f3f4f6);
+  border-radius: 24px;
+   backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  max-width: 860px;
+  width: 100%;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.brand-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-placeholder {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+.choice-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.choice-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-light);
+}
+
+.dual-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+  width: 100%;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.choice-button {
+  flex: 1;
+  padding: 1.75rem;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.new-equipment-btn {
+  background-color: var(--primary-blue-light);
+  color: var(--primary-blue);
+}
+
+.reconditioned-btn {
+  background-color: var(--eco-green-light);
+  color: var(--eco-green);
+}
+
+.choice-button:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.new-equipment-btn:hover {
+  background-color: var(--primary-blue);
+  color: var(--white);
+}
+
+.reconditioned-btn:hover {
+  background-color: var(--eco-green);
+  color: var(--white);
+}
+
+.button-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.button-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-main-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.button-subtext {
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+.button-divider {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  box-shadow: 0 0 0 4px var(--card-glass);
+  color: var(--text-light);
+  font-weight: 500;
+  z-index: 1;
+}
+
+.choice-footer {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--primary-blue);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .dual-button-container {
+    flex-direction: column;
+  }
+
+  .choice-button {
+    width: 100%;
+  }
+
+  .button-divider {
+    position: relative;
+    left: auto;
+    transform: none;
+    margin: 1rem 0;
+  }
+}
