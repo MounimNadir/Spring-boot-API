@@ -14,4 +14,6 @@ public interface CategoryService {
 	Response getCategoryById(Long categoryId);
 	
 	Response deleteCategory(Long categoryId);
+	
+	Response getProductsByCategory(Long categoryId, int page, int size);
 }

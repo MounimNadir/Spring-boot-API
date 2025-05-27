@@ -76,12 +76,27 @@ public class EntityDtoMapper {
 	
 	
 	public ProductDto mapProductToDtobasic(Product product) {
+		
 		ProductDto productDto = new ProductDto();
 		productDto.setId(product.getId());
 		productDto.setName(product.getName());
 		productDto.setDescription(product.getDescription());
 		productDto.setImageUrl(product.getImageUrl());
 		productDto.setPrice(product.getPrice());
+		productDto.setPurchasable(product.isPurchasable());
+		productDto.setType(product.getType());
+		
+		if(product.getSpecifications() != null) {
+            productDto.setSpecifications(product.getSpecificationsMap());
+        }
+		productDto.setModel(product.getModel());
+		 if(product.getCategory() != null) {
+		        productDto.setCategoryId(product.getCategory().getId());
+		        // If you need the full category DTO, you'd map it here
+		        // productDto.setCategory(mapCategoryToDto(product.getCategory()));
+		    }
+		 productDto.setProductCode(product.getProductCode());
+		
 		
 		return productDto;
 		

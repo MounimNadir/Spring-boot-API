@@ -52,6 +52,15 @@ public class User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
+	@Column(name = "enabled", nullable = false)
+	private boolean enabled = false; // Default to false until verified
+
+	@Column(name = "verification_token")
+	private String verificationToken;
+
+	@Column(name = "verification_token_expiry")
+	private LocalDateTime verificationTokenExpiry;
+	
 	@Column(name = "created_at")
 	private final LocalDateTime createdAt = LocalDateTime.now();
 	

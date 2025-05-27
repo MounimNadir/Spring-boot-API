@@ -19,4 +19,6 @@ public interface UserService {
 	User getLoginUser();
 	
 	Response getUserInfoAndOrderHistory();
+	 Response verifyEmail(String token);
+	 User getCurrentUser();
 }

@@ -56,6 +56,26 @@ public class OrderItemServiceImpl implements OrderItemService {
         List<OrderItem> orderItems = orderRequest.getItems().stream().map(orderItemRequest -> {
             Product product = productRepo.findById(orderItemRequest.getProductId())
                     .orElseThrow(()-> new NotFoundException("Product Not Found"));
+            
+            
+            
+         // === IMPROVED VALIDATION ===
+            if (!product.isPurchasable()) {
+                throw new IllegalStateException(
+                    "This product '" + product.getName() + "' is for display only. " +
+                    "Please contact us for purchasing options."
+                );
+            }
+            
+            
+         // === PRICE VALIDATION ===
+            if (product.getPrice() == null) {
+                throw new IllegalStateException(
+                    "Pricing not available for '" + product.getName() + "'. " +
+                    "Please contact our sales team."
+                );
+            }
+            // ========================
 
             OrderItem orderItem = new OrderItem();
             orderItem.setProduct(product);

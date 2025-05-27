@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.MounimDev</groupId>
-	<artifactId>Ecommercedev</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>Ecommercedev_FeatureTest</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>Ecommercedev</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -97,6 +97,25 @@
 		    <version>0.12.6</version>
 		    <scope>runtime</scope>
 		</dependency>
+		
+		
+				<!-- Spring Boot Mail Starter -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		
+		<!-- Optional: For Thymeleaf email templates (if you want HTML emails later) -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
+		
+		
+
+
+
 	</dependencies>
 
 	<build>
