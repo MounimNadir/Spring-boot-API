@@ -8,7 +8,7 @@ const ChoicePage = ({ setUserMode }) => {
   const handleNew = () => {
     sessionStorage.setItem('userMode', 'newEquipment');
     setUserMode('newEquipment');
-    navigate('/New-equipment');
+    navigate('/NewEquipment');
   };
 
   const handleOld = () => {

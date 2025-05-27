@@ -25,6 +25,8 @@ import AdminOrderDetailsPage from './component/admin/AdminOrderDetailsPage';
 import GuestNavbar from './component/common/GuestNavbar';
 import { useEffect, useState } from 'react';
 import ChoicePage from './component/common/ChoicePage';
+import NewEquipment from './component/pages/NewEquipmentPage';
+import NewEquipmentPage from './component/pages/NewEquipmentPage';
 
 function App() {
 
@@ -53,6 +55,7 @@ function App() {
         <Route path="/choice" element={<ChoicePage setUserMode={setUserMode} />} />
         <Route path="/guest" element={<Home />} />
         <Route path="/" element={<Home />} />
+        <Route path='/newEquipment' element={<NewEquipmentPage />} />
         <Route path='/product/:productId' element = {<ProductDetailsPage/>} />
         <Route path='/categories' element={<CategoryListPage/>} />
         <Route path='/category/:categoryId' element = {<CategoryProductsPage/>} />

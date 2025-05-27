@@ -27,7 +27,7 @@ const Home = () => {
                     const response = await ApiService.searchProducts(searchItem);
                     allProducts = response.productList || [];
                 }else{
-                    const response = await ApiService.getAllProducts();
+                    const response = await ApiService.getPurchasableProducts();
                     allProducts = response.productList || [];
 
                 }

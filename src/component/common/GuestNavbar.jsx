@@ -6,7 +6,7 @@ const GuestNavbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/New-equipment" className="navbar-link">
+        <Link to="/NewEquipment" className="navbar-link">
           Home
         </Link>
         <div className="navbar-links">

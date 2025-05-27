@@ -15,7 +15,7 @@ const AdminCategoryPage = () => {
 
     const fetchCategories = async()=>{
         try {
-            const response = await ApiService.getAllCategory();
+            const response = await ApiService.getAllCategories();
             setCategories(response.categoryList || []);
         } catch (error) {
             console.log("Error fetching category list",  error)
