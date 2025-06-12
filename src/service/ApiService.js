@@ -228,4 +228,62 @@ static async deleteProduct(productId){
         });
         return response.data;
     }
+
+
+    static async sendContactForm(formData) {
+    const response = await axios.post(`${this.BASE_URL}/contact`, null, {
+        params: {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message
+        },
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    });
+    return response.data;
+}
+
+
+ static async getAdminStatistics(timeRange = 'month') {
+        const response = await axios.get(`${this.BASE_URL}/admin/statistics`, {
+            params: { timeRange },
+            headers: this.getHeader()
+        });
+        return response.data;
+    }
+
+
+
+   static async getAllUsers() {
+    try {
+        const response = await axios.get(`${this.BASE_URL}/admin/users`, {
+            headers: this.getHeader()
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        throw error;
+    }
+}
+
+static async toggleUserStatus(userId) {
+    const response = await axios.put(
+        `${this.BASE_URL}/admin/${userId}/toggle-status`, 
+        {}, // No request body needed
+        { headers: this.getHeader() }
+    );
+    return response.data;
+}
+
+static async sendUserEmail(userId, subject, message) {
+    const response = await axios.post(
+        `${this.BASE_URL}/admin/${userId}/send-email`,
+        { subject, message },
+        { headers: this.getHeader() }
+    );
+    return response.data;
+}
+
 }

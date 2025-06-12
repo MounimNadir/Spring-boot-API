@@ -17,24 +17,24 @@ const ChoicePage = ({ setUserMode }) => {
     navigate('/');
   };
 
-  return (
+ return (
     <div className="choice-container">
       <div className="choice-card">
         <div className="brand-header">
           <div className="logo-placeholder">FAM MED</div>
           <h1 className="choice-title">Welcome to FAM MED</h1>
-          <p className="choice-subtitle">Select your equipment preference</p>
+          <p className="choice-subtitle">Select your shopping experience</p>
         </div>
 
         <div className="dual-button-container">
           <button 
-            className="choice-button new-equipment-btn"
+            className="choice-button showroom-btn"
             onClick={handleNew}
           >
-            <span className="button-icon">🆕</span>
+            <span className="button-icon">🏢</span> {/* Changed from 🆕 to building icon */}
             <span className="button-content">
-              <span className="button-main-text">New Equipment</span>
-              <span className="button-subtext">Latest models with full warranty</span>
+              <span className="button-main-text">Show Room</span>
+              <span className="button-subtext">Experience our premium collection</span>
             </span>
           </button>
           
@@ -43,13 +43,13 @@ const ChoicePage = ({ setUserMode }) => {
           </div>
           
           <button 
-            className="choice-button reconditioned-btn"
+            className="choice-button shop-btn"
             onClick={handleOld}
           >
-            <span className="button-icon">♻️</span>
+            <span className="button-icon">🛒</span> {/* Changed from ♻️ to shopping cart */}
             <span className="button-content">
-              <span className="button-main-text">Reconditioned</span>
-              <span className="button-subtext">Certified pre-owned equipment</span>
+              <span className="button-main-text">Shop</span>
+              <span className="button-subtext">Browse our value selections</span>
             </span>
           </button>
         </div>

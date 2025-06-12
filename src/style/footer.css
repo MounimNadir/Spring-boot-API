@@ -1,29 +1,103 @@
-.footer{
-    position: fixed;
-    border: 0;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    z-index: 1000;
+/* Professional Footer Design */
+.footer {
+  background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+  color: var(--light-gold);
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: auto;
+  position: relative;
+  border-top: 3px solid var(--accent-gold);
+  box-shadow: 0 -10px 30px rgba(26, 35, 126, 0.1);
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
 }
 
 .footer-links ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
 }
+
 .footer-links a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    margin: 0 15px;
+  text-decoration: none;
+  color: var(--light-gold);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: capitalize;
 }
+
+.footer-links a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--accent-gold);
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-gold);
+  background: rgba(249, 168, 37, 0.1);
+  transform: translateY(-2px);
+}
+
+.footer-links a:hover::before {
+  width: 80%;
+}
+
 .footer-info p {
-    color: white;
-    margin: 0 0;
+  color: var(--light-gold);
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+
+  .footer-links ul {
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links a {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .footer-info p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }

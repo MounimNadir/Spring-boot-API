@@ -9,13 +9,11 @@ const CartPage = () => {
     const [message, setMessage] = useState(null);
     const navigate = useNavigate();
 
-
     const incrementItem = (product) => {
         dispatch({ type: 'INCREMENT_ITEM', payload: product });
     }
 
     const decrementItem = (product) => {
-
         const cartItem = cart.find(item => item.id === product.id);
         if (cartItem && cartItem.quantity > 1) {
             dispatch({ type: 'DECREMENT_ITEM', payload: product });
@@ -24,9 +22,15 @@ const CartPage = () => {
         }
     }
 
+    const removeItem = (product) => {
+        dispatch({ type: 'REMOVE_ITEM', payload: product });
+    }
+
+    const removeAllItems = () => {
+        dispatch({ type: 'CLEAR_CART' });
+    }
+
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-
-
 
     const handleCheckout = async () => {
         if (!ApiService.isAuthenticated()) {
@@ -65,11 +69,36 @@ const CartPage = () => {
             setTimeout(() => {
                 setMessage('')
             }, 3000);
-
         }
-
     };
 
+    const handleNext = async () => {
+        if (!ApiService.isAuthenticated()) {
+            setMessage("You need to login first before you can place an order");
+            setTimeout(() => {
+                setMessage('')
+                navigate("/login")
+            }, 2500);
+            return;
+        }
+
+        try {
+            // Check if user has address
+            const userInfo = await ApiService.getLoggedInUserInfo();
+            if (userInfo.user.address) {
+                // Redirect to address confirmation page
+                navigate("/confirm-address");
+            } else {
+                // Redirect to add address page
+                navigate("/add-address");
+            }
+        } catch (error) {
+            setMessage(error.response?.data?.message || error.message || 'Failed to fetch user info');
+            setTimeout(() => {
+                setMessage('')
+            }, 3000);
+        }
+    };
 
     return (
         <div className="cart-page">
@@ -80,6 +109,14 @@ const CartPage = () => {
                 <p>Your cart is empty</p>
             ) : (
                 <div>
+                    <div className="cart-actions">
+                        <button 
+                            className="remove-all-button" 
+                            onClick={removeAllItems}
+                        >
+                            Remove All Items
+                        </button>
+                    </div>
                     <ul>
                         {cart.map(item => (
                             <li key={item.id}>
@@ -88,17 +125,23 @@ const CartPage = () => {
                                     <h2>{item.name}</h2>
                                     <p>{item.description}</p>
                                     <div className="quantity-controls">
-                                        <button onClick={()=> decrementItem(item)}>-</button>
+                                        <button onClick={() => decrementItem(item)}>-</button>
                                         <span>{item.quantity}</span>
-                                        <button onClick={()=> incrementItem(item)}>+</button>
+                                        <button onClick={() => incrementItem(item)}>+</button>
                                     </div>
                                     <span>${item.price.toFixed()}</span>
                                 </div>
+                                <button 
+                                    className="remove-item-button" 
+                                    onClick={() => removeItem(item)}
+                                >
+                                    Remove
+                                </button>
                             </li>
                         ))}
                     </ul>
                     <h2>Total: ${totalPrice.toFixed(2)}</h2>
-                    <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
+                    <button className="checkout-button" onClick={handleNext}>Next</button>
                 </div>
             )}
         </div>

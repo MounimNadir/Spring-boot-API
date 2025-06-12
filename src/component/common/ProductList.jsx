@@ -55,9 +55,8 @@ const EditablePriceInput = ({ value, min, max, onChange }) => {
   );
 };
 
-const ProductList = ({ products, showAddToCart = true }) => {
+const ProductList = ({ products, showAddToCart = true, showFilters = true }) => {
     const { cart, dispatch } = useCart();
-
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(80000);
 
@@ -80,14 +79,21 @@ const ProductList = ({ products, showAddToCart = true }) => {
     };
 
     const filteredProducts = products.filter(product => {
+        if (!showFilters) return true; // Skip filtering if filters are hidden
+        
         const price = Number(product.price);
-        if (isNaN(price)) return false;
+        if (isNaN(price)) return true; // Include products without prices
+        
         return price >= minPrice && price <= maxPrice;
     });
 
-    const sortedProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+        if (!a.price && !b.price) return 0;
+        if (!a.price) return 1;
+        if (!b.price) return -1;
+        return a.price - b.price;
+    });
 
-    // Ensure minPrice <= maxPrice on changes
     const handleMinPriceChange = (val) => {
         if (val <= maxPrice && val >= 0) setMinPrice(val);
         else setMinPrice(maxPrice);
@@ -100,51 +106,48 @@ const ProductList = ({ products, showAddToCart = true }) => {
 
     return (
         <div className="product-list-container">
-            {/* Sidebar */}
-            <aside className="sidebar">
-                <h3>Filter by Price</h3>
-                <div className="price-filter">
+            {showFilters && (
+                <aside className="sidebar">
+                    <h3>Filter by Price</h3>
+                    <div className="price-filter">
+                        <label>
+                            Min Price:{" "}
+                            <EditablePriceInput
+                                value={minPrice}
+                                min={0}
+                                max={maxPrice}
+                                onChange={handleMinPriceChange}
+                            />
+                            <input
+                                type="range"
+                                min="0"
+                                max="80000"
+                                value={minPrice}
+                                onChange={(e) => handleMinPriceChange(Number(e.target.value))}
+                            />
+                        </label>
 
-                    {/* Min Price */}
-                    <label>
-                        Min Price:{" "}
-                        <EditablePriceInput
-                            value={minPrice}
-                            min={0}
-                            max={maxPrice}
-                            onChange={handleMinPriceChange}
-                        />
-                        <input
-                            type="range"
-                            min="0"
-                            max="80000"
-                            value={minPrice}
-                            onChange={(e) => handleMinPriceChange(Number(e.target.value))}
-                        />
-                    </label>
+                        <label>
+                            Max Price:{" "}
+                            <EditablePriceInput
+                                value={maxPrice}
+                                min={minPrice}
+                                max={80000}
+                                onChange={handleMaxPriceChange}
+                            />
+                            <input
+                                type="range"
+                                min="0"
+                                max="80000"
+                                value={maxPrice}
+                                onChange={(e) => handleMaxPriceChange(Number(e.target.value))}
+                            />
+                        </label>
+                    </div>
+                </aside>
+            )}
 
-                    {/* Max Price */}
-                    <label>
-                        Max Price:{" "}
-                        <EditablePriceInput
-                            value={maxPrice}
-                            min={minPrice}
-                            max={80000}
-                            onChange={handleMaxPriceChange}
-                        />
-                        <input
-                            type="range"
-                            min="0"
-                            max="80000"
-                            value={maxPrice}
-                            onChange={(e) => handleMaxPriceChange(Number(e.target.value))}
-                        />
-                    </label>
-                </div>
-            </aside>
-
-            {/* Products */}
-            <main className="products-main">
+            <main className={`products-main ${!showFilters ? 'full-width' : ''}`}>
                 <div className="product-list">
                     {sortedProducts.map((product, index) => {
                         const cartItem = cart.find(item => item.id === product.id);
@@ -157,11 +160,15 @@ const ProductList = ({ products, showAddToCart = true }) => {
                                 </div>
 
                                 <Link to={`/product/${product.id}`}>
-                                    <img src={product.imageUrl} alt={product.name} className="product-image" />
+                                    <img 
+                                        src={product.imageUrl || '/placeholder-image.jpg'} 
+                                        alt={product.name} 
+                                        className="product-image" 
+                                    />
                                     <h3>{product.name}</h3>
-                                    <p>{product.description}</p>
+                                    <p>{product.description || 'No description available'}</p>
                                     <span>
-                                        {product.price ? `$${Number(product.price).toFixed(2)}` : "Price on request"}
+                                        {product.price ? `${Number(product.price).toFixed(2)} MAD` : "Price on request"}
                                     </span>
                                 </Link>
 

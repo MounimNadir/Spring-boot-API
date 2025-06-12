@@ -3,17 +3,14 @@ import { useNavigate } from "react-router-dom";
 import ApiService from "../../service/ApiService";
 import '../../style/register.css'
 
-
 const LoginPage = () => {
-
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
-
+    const [showPassword, setShowPassword] = useState(false); // State for password visibility
     const [message, setMessage] = useState(null);
     const navigate = useNavigate();
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,7 +22,7 @@ const LoginPage = () => {
         try {
             const response = await ApiService.loginUser(formData);
             if (response.status === 200) {
-                setMessage("User Successfully Loged in");
+                setMessage("User Successfully Logged in");
                 localStorage.setItem('token', response.token);
                 localStorage.setItem('role', response.role);
                 setTimeout(() => {
@@ -33,7 +30,7 @@ const LoginPage = () => {
                 }, 4000)
             }
         } catch (error) {
-            setMessage(error.response?.data.message || error.message || "unable to Login a user");
+            setMessage(error.response?.data.message || error.message || "Unable to login");
         }
     }
 
@@ -52,17 +49,27 @@ const LoginPage = () => {
                     
                 <label>Password: </label>
                 <input
-                    type="password"
+                    type={showPassword ? "text" : "password"} // Toggle between text and password
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     required />
+                
+                <div className="show-password">
+                    <input
+                        type="checkbox"
+                        id="showPassword"
+                        checked={showPassword}
+                        onChange={() => setShowPassword(!showPassword)}
+                    />
+                    <label htmlFor="showPassword">Show Password</label>
+                </div>
 
-                    <button type="submit">Login</button>
-                    
-                    <p className="register-link">
-                        Don't have an account? <a href="/register">Register</a>
-                    </p>
+                <button type="submit">Login</button>
+                
+                <p className="register-link">
+                    Don't have an account? <a href="/register">Register</a>
+                </p>
             </form>
         </div>
     )

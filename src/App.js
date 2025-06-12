@@ -27,6 +27,13 @@ import { useEffect, useState } from 'react';
 import ChoicePage from './component/common/ChoicePage';
 import NewEquipment from './component/pages/NewEquipmentPage';
 import NewEquipmentPage from './component/pages/NewEquipmentPage';
+import AddressConfirmationPage from './component/pages/AddressConfirmationPage';
+import ContactUsPage from './component/pages/ContactusPage';
+import SuccessPage from './component/pages/SuccessPage';
+import OnlinePayment from './component/pages/OnlinePayment';
+import UserManagement from './component/admin/UserManagement';
+import AboutPage from './component/pages/AboutPage';
+
 
 function App() {
 
@@ -55,6 +62,7 @@ function App() {
         <Route path="/choice" element={<ChoicePage setUserMode={setUserMode} />} />
         <Route path="/guest" element={<Home />} />
         <Route path="/" element={<Home />} />
+        <Route path ="/contact" element={<ContactUsPage />}/>
         <Route path='/newEquipment' element={<NewEquipmentPage />} />
         <Route path='/product/:productId' element = {<ProductDetailsPage/>} />
         <Route path='/categories' element={<CategoryListPage/>} />
@@ -65,6 +73,9 @@ function App() {
         <Route path='/profile' element = {<ProtectedRoute element={<ProfilePage/>}/>} />
         <Route path='/add-address' element={<ProtectedRoute element={<AddressPage/>} />} />
         <Route path='/edit-address' element={<ProtectedRoute element={<AddressPage/>} />} />
+
+        <Route path="/confirm-address" element={<ProtectedRoute element={<AddressConfirmationPage />}/>} />
+
         <Route path='/admin' element={<AdminRoute element={<AdminPage/>} />} />
         <Route path='/admin/categories' element = {<AdminRoute element={<AdminCategoryPage/>} />} />
 
@@ -77,6 +88,10 @@ function App() {
 
         <Route path='/admin/orders' element={<AdminRoute element={<AdminOrdersPage/>} />} />
         <Route path='/admin/order-details/:itemId' element={<AdminRoute element={<AdminOrderDetailsPage/>} />} />
+        <Route path = "/order-success" element={<SuccessPage/>} />
+        <Route path= "payment-gateway" element={<OnlinePayment/>} />
+        <Route path='/admin/users' element={<UserManagement/>} />
+        <Route path='/about' element={<AboutPage/>} />
       </Routes>
       <Footer/>
     </CartProvider>

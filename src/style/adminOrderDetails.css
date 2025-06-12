@@ -1,42 +1,277 @@
-.order-details-page{
-    padding: 20px;
-    width: 50%;
-    margin: auto;
-    margin-bottom: 100px;
-}
-.order-details-page h2{
-    text-align: center;
-    font-weight: 700;
-}
-.message{
-    text-align: center;
-    margin-bottom: 20px;
-}
-.order-item-details{
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 20px;
+/* Professional Admin Order Details Design */
+.order-details-page {
+  max-width: 1200px;
+  margin: 2rem auto 8rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--cream) 0%, #f8f9fa 100%);
 }
 
-.info, .status-change{
-    margin-bottom: 20px;
+.order-details-page h2 {
+  text-align: center;
+  font-weight: 800;
+  color: var(--primary-navy);
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
 }
-.info p{
-    margin: 5px 0;
+
+.order-details-page h2::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-gold), #ffb74d);
+  border-radius: 2px;
 }
-.status-option{
-    padding: 10px;
+
+.message {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+  border: 2px solid #c3e6cb;
+  box-shadow: var(--shadow-soft);
 }
-.update-status-button{
-    background-color: #f68b1e;
-    color: #fff;
-    margin-left: 10px;
-    padding: 10px;
-    font-weight: 800;
-    font-size: 15px;
-    border: none;
-    border-radius: 5px;
+
+.order-item-details {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(26, 35, 126, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-elegant);
+  position: relative;
+  overflow: hidden;
 }
-.update-status-button:hover{
-    background-color: #b77029;
+
+.order-item-details::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-gold), #ffb74d, var(--accent-gold));
+}
+
+.info {
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background: linear-gradient(145deg, var(--light-gold) 0%, #fff9c4 100%);
+  border-radius: 16px;
+  border: 2px solid var(--accent-gold);
+  position: relative;
+}
+
+.info h3 {
+  color: var(--primary-navy);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.info h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary-navy);
+  border-radius: 2px;
+}
+
+.info p {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(26, 35, 126, 0.1);
+}
+
+.info p:last-child {
+  border-bottom: none;
+}
+
+.info strong {
+  color: var(--primary-navy);
+  font-weight: 700;
+  min-width: 150px;
+}
+
+/* Product Information Section */
+.order-item-details > div:last-of-type {
+  background: linear-gradient(145deg, #e3f2fd 0%, #f3f4f6 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 2px solid var(--primary-navy);
+  text-align: center;
+}
+
+.order-item-details img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 1.5rem;
+  border: 3px solid var(--accent-gold);
+}
+
+.status-change {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 2px solid #e9ecef;
+  margin-bottom: 2rem;
+}
+
+.status-change h4 {
+  color: var(--primary-navy);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-option {
+  padding: 1rem 1.25rem;
+  font-size: 1.1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--text-dark);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 1rem;
+  min-width: 200px;
+}
+
+.status-option:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(249, 168, 37, 0.15);
+  outline: none;
+}
+
+.update-status-button {
+  background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
+  color: var(--light-gold);
+  padding: 1rem 2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.update-status-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.update-status-button:hover::before {
+  left: 100%;
+}
+
+.update-status-button:hover {
+  background: linear-gradient(135deg, var(--secondary-navy) 0%, var(--primary-navy) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(26, 35, 126, 0.3);
+}
+
+/* Loading State */
+.order-details-page p:last-child {
+  text-align: center;
+  font-size: 1.3rem;
+  color: var(--text-light);
+  padding: 3rem;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  border: 2px dashed #dee2e6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .order-details-page {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .order-details-page h2 {
+    font-size: 2rem;
+  }
+
+  .order-item-details {
+    padding: 2rem 1.5rem;
+  }
+
+  .info {
+    padding: 1.5rem;
+  }
+
+  .info p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .status-change {
+    text-align: center;
+  }
+
+  .status-option {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .update-status-button {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-item-details {
+    padding: 1.5rem 1rem;
+  }
+
+  .info {
+    padding: 1rem;
+  }
+
+  .info h3 {
+    font-size: 1.3rem;
+  }
+
+  .order-details-page h2 {
+    font-size: 1.7rem;
+  }
 }
