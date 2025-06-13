@@ -222,6 +222,116 @@
   max-width: 600px;
 }
 
+
+
+/* Account Dropdown Styles - Fixed Version */
+.account-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.account-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  color: var(--primary-navy);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.account-dropdown-toggle:hover {
+  background: rgba(26, 35, 126, 0.05);
+  color: var(--secondary-navy);
+}
+
+.account-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  min-width: 220px;
+  z-index: 1000;
+  padding: 0.75rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(26, 35, 126, 0.1);
+}
+
+.account-dropdown-container:hover .account-dropdown,
+.account-dropdown-container:focus-within .account-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.account-dropdown a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: var(--primary-navy);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.account-dropdown a:hover {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
+  color: var(--secondary-navy);
+  padding-left: 1.75rem;
+}
+
+.account-dropdown a::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  margin-right: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.account-dropdown a:hover::before {
+  opacity: 1;
+}
+
+/* Active state for dropdown links */
+.account-dropdown a.active {
+  background: rgba(26, 35, 126, 0.05);
+  color: var(--secondary-navy);
+  font-weight: 600;
+}
+
+/* Mobile dropdown behavior */
+@media (max-width: 768px) {
+  .account-dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding: 0.5rem 0;
+    display: none;
+  }
+  
+  .account-dropdown-container.active .account-dropdown {
+    display: block;
+  }
+  
+  .account-dropdown a {
+    padding: 0.75rem 1rem;
+  }
+}
+
 /* Loading State */
 .profile-page .loading {
   display: flex;

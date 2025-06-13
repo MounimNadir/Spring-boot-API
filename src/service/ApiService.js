@@ -166,6 +166,14 @@ static async deleteProduct(productId){
         return response.data;
     }
 
+    static async getOrderDetails(orderId) {
+    const response = await axios.get(`${this.BASE_URL}/order/filter`, {
+        headers: this.getHeader(),
+        params: { itemId: orderId }
+    });
+    return response.data;
+}
+
     static async getOrderHistory(page = 0, size = 10) {
         const response = await axios.get(`${this.BASE_URL}/order/filter`, {
             headers: this.getHeader(),
@@ -186,6 +194,30 @@ static async deleteProduct(productId){
         return response.data;
     }
 
+    static async cancelOrder(orderItemId, isRequest = false) {
+    const response = await axios.put(
+        `${this.BASE_URL}/order/cancel/${orderItemId}`,
+        {},
+        {
+            headers: this.getHeader(),
+            params: { requestOnly: isRequest }
+        }
+    );
+    return response.data;
+}
+
+
+static async processCancellationRequest(orderItemId, approve) {
+    const response = await axios.put(
+        `${this.BASE_URL}/order/process-cancellation/${orderItemId}`,
+        {},
+        {
+            headers: this.getHeader(),
+            params: { approve }
+        }
+    );
+    return response.data;
+}
     // ========================
     // 5. CATEGORY & ADDRESS
     // ========================

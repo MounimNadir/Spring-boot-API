@@ -54,7 +54,7 @@ const AddressPage = () => {
             
             // Determine redirect based on where user came from
             if (location.state?.from === 'profile') {
-                navigate("/profile");
+                navigate("/account/personal");
             } else {
                 // Default redirect for checkout flow and direct access
                 navigate("/confirm-address");

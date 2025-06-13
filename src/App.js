@@ -33,6 +33,9 @@ import SuccessPage from './component/pages/SuccessPage';
 import OnlinePayment from './component/pages/OnlinePayment';
 import UserManagement from './component/admin/UserManagement';
 import AboutPage from './component/pages/AboutPage';
+import PersonalInfoPage from './component/pages/PersonalInfoPage';
+import OrderHistoryPage from './component/pages/OrderHistoryPage';
+import OrderDetailsPage from './component/pages/OrderDetailsPage';
 
 
 function App() {
@@ -70,6 +73,20 @@ function App() {
         <Route path='/cart'element={<CartPage/>} />
         <Route path='/register' element={<RegisterPage/>} />  
         <Route path='/login' element={<LoginPage/>} />
+
+
+        <Route path="/account/orders/:orderId/cancel" element= {<ProtectedRoute element={<OrderDetailsPage/>} />} />
+        <Route path="/account/orders/:orderId/request-cancel" element= {<ProtectedRoute element={<OrderDetailsPage/>} />} />
+
+
+        <Route path='/account/personal' element={<ProtectedRoute element={<PersonalInfoPage/>}/>} />
+        <Route path='/account/orders' element={<ProtectedRoute element={<OrderHistoryPage/>}/>} />
+
+      <Route 
+    path="/account/orders/:orderId" 
+    element={<ProtectedRoute element={<OrderDetailsPage />} />} 
+/>
+
         <Route path='/profile' element = {<ProtectedRoute element={<ProfilePage/>}/>} />
         <Route path='/add-address' element={<ProtectedRoute element={<AddressPage/>} />} />
         <Route path='/edit-address' element={<ProtectedRoute element={<AddressPage/>} />} />
